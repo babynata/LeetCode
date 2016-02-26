@@ -1,0 +1,27 @@
+public class Solution {
+    public int[][] generateMatrix(int n) {
+        int[][] generateMatrix=new int[n][n];
+	        int length=n*n;
+	        int max=n-1;
+	        int min=0;
+	        int a=0;
+	        int b=0;
+	        for(int i=1;i<=length;i++){
+	        	generateMatrix[a][b]=i;
+	        	if(a==min&&b<max){
+	        		b++;
+	        	}else if(a<max&&b==max){
+	        		a++;
+	        	}else if(a==max&&b>min){
+	        		b--;
+	        	}else if(a>min&&b==min){
+	        		a--;
+	        		if(a==min+1){
+	        			min=min+1;
+	        			max=max-1;
+	        		}
+	        	}
+	        }
+	        return generateMatrix;
+    }
+}
