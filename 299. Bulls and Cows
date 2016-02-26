@@ -1,0 +1,41 @@
+public class Solution {
+    public String getHint(String secret, String guess) {
+        StringBuffer hint=new StringBuffer();
+		 int bulls=0,cows=0;
+		 int index=0;
+		 StringBuffer s1=new StringBuffer();
+		 StringBuffer s2=new StringBuffer();
+		 boolean ss1=secret.matches("\\d+");
+		 boolean ss2=guess.matches("\\d+");
+	     if(!ss1&&!ss2){
+	    	 return "0A0B";
+	     }else if(secret.length()!=guess.length()){
+	    	 return "0A0B";
+	     }else{
+	    	 for(int i=0;i<secret.length();i++){
+	    		 char a=secret.charAt(i);
+	    		 char b=guess.charAt(i);
+	    		 if(a==b){
+	    			 bulls++;
+	    		 }else{
+	    			 s1.append(a);
+	    			 s2.append(b);
+	    		 }
+	    	 }
+	    	 for(int i=0;i<s1.length();i++){
+	    		 char a=s1.charAt(i);
+	    		 for(int j=0;j<s2.length();j++){
+	    			 char c=s2.charAt(j);
+	    			 if(a==c){
+	    				 cows++;
+	    				 s2.deleteCharAt(j);
+	    				 j--;
+	    				 break;
+	    			 }
+	    		 }
+	    	 }
+	     }
+	     hint.append(bulls+"A"+cows+"B");
+	     return hint.toString();
+    }
+}
